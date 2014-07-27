@@ -1,0 +1,11 @@
+<a class="project project-url" href="<%= project.get('url') %>">
+  <i class="fa fa-external-link"></i>
+  <%= project.escape('title') %>
+</a>
+
+&nbsp;
+
+<a class="project project-github" href="https://github.com/<%= project.escape('gitrepo') %>">
+  <i class="fa fa-github"></i>
+  <%= project.escape('gitrepo') %>
+</a>

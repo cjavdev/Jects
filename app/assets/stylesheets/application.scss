@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "font-awesome";
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,300);
+
+
+$brand-green: #A2CFA5;
+$brand-yellow: #E0E7AB;
+$brand-orange: #F5974E;
+$brand-salmon: #E96B56;
+$brand-red: #D24344;
+
+* {
+  font-family: 'Oxygen', sans-serif;
+  background-color: $brand-green;
+}
+
+.input-huge {
+  height: 60px;
+  font-size: 30px;
+  line-height: 35px;
+  border: none;
+  border-bottom: thin dotted;
+  outline: none;
+  margin: 5px;
+}
+
+.column {
+  position: relative;
+  float: left;
+  width: 40%;
+}
+
+.left-column {
+  margin-left: 10%;
+}
+
+li.mine {
+  a {
+    color: $brand-red;
+    &:hover {
+      color: $brand-salmon;
+      text-decoration: underline;
+    }
+  }
+}
+
+a.project {
+  margin: 5px;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  right: 0px;
+}
+
+.project-github {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.project-url {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.projects {
+  list-style: none;
+}

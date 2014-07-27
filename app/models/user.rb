@@ -10,7 +10,11 @@ class User < ActiveRecord::Base
     presence: true
   )
 
-  before_validation :ensure_session_token
+  has_one :project
+
+  before_validation :ensure_session_token, :ensure_project
+
+
 
   def self.find_by_omniauth(omniauth_params)
     self.find_by(
@@ -44,6 +48,14 @@ class User < ActiveRecord::Base
   protected
 
   def ensure_session_token
-    self.session_token || reset_session_token
+    self.session_token ||= reset_session_token
+  end
+
+  def ensure_project
+    self.project ||= Project.create(
+      title: "#{ self.login }'s project",
+      url: 'http://bp.io/',
+      gitrepo: 'bp/bp'
+    )
   end
 end

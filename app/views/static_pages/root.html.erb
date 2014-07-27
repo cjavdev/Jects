@@ -1,2 +1,7 @@
-<h1>StaticPages#root</h1>
-<p>Find me in app/views/static_pages/root.html.erb</p>
+<script>
+  $(Jects.initialize);
+  var UID = '<%= current_user.id %>';
+  Jects.projects.set(<%= Project.all.to_json.html_safe %>);
+</script>
+
+<main id="main"></main>
