@@ -10,7 +10,7 @@
 
   <% if !!current_user %>
     <div class="header animated fadeInRight">
-      <form action="http://localhost:3000/session" class="button_to" method="post">
+      <form action="/session" class="button_to" method="post">
         <input name="_method" type="hidden" value="delete">
         <button class="signout" type="submit">
           <i class="fa fa-sign-out"></i>
