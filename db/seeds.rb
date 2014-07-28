@@ -1,7 +1,36 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# puts "Creating Jamaican Dave"
 #
-# Examples:
+# dave = User.new(
+#   provider: 'github',
+#   uid: 123,
+#   login: 'jamaicandave',
+#   name: 'Jamaican Dave',
+#   email: 'thejamaicandave@gmail.com',
+#   session_token: "stuff",
+#   image: "img"
+# )
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# if dave.save
+#   puts "Daves the man!"
+# else
+#   p dave.errors
+# end
+
+1000.times do |n|
+  u = User.create(
+    provider: :github,
+    uid: n,
+    login: Faker::Internet.user_name,
+    name: "#{ Faker::Name.first_name } #{ Faker::Name.last_name }",
+    email: Faker::Internet.email,
+    image: :img,
+    session_token: SecureRandom.hex
+  )
+  p = u.project
+  p.title = "#{ Faker::Hacker.abbreviation } #{ Faker::Hacker.ingverb}  #{ Faker::Hacker.noun }"
+  name = Faker::Internet.domain_word
+  p.url = "http://#{ name }.#{ Faker::Internet.domain_suffix }/"
+  p.gitrepo = "#{ name }/#{ name }"
+  p.save
+  puts "#{ name } created! #{ n } / 1000"
+end

@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resource :session
 
   namespace :api do
-    resource :projects
+    resources :projects
   end
 end

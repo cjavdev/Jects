@@ -4,11 +4,13 @@ Jects.Views.ProjectItem = Backbone.View.extend({
   tagName: 'li',
 
   className: function () {
-    return (this.model === Jects.project()) ? 'mine' : '';
+    return (this.model === Jects.project()) ? 'mine' : 'item';
   },
 
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'change:title change:url', this.emphasizeTitle);
+    this.listenTo(this.model, 'change:gitrepo', this.emphasizeGithub);
   },
 
   render: function () {
@@ -17,5 +19,17 @@ Jects.Views.ProjectItem = Backbone.View.extend({
     });
     this.$el.html(content);
     return this;
+  },
+
+  emphasizeTitle: function () {
+    setTimeout(function () {
+      this.$('a.title').addClass('animated shake');
+    }.bind(this), 300);
+  },
+
+  emphasizeGithub: function () {
+    setTimeout(function () {
+      this.$('a.gitrepo').addClass('animated shake');
+    }.bind(this), 300);
   }
 });

@@ -4,7 +4,7 @@ module Api
       @project = current_user.project
 
       if @project.update_attributes(project_params)
-        render :show, layout: false
+        render json: @project
       else
         render json: @project.errors.full_messages, status: :unprocessable_entity
       end

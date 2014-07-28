@@ -17,6 +17,12 @@ Jects.Views.ProjectsIndex = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
+
+    var view = new Jects.Views.ProjectItem({
+      model: Jects.project()
+    });
+
+    this.$('ul').prepend(view.render().$el);
     return this;
   }
 });

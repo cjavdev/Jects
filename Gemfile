@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'animate-rails'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'faker'
 gem 'font-awesome-rails'
 gem 'figaro'
 gem 'jquery-rails'

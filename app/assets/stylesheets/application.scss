@@ -9,7 +9,7 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
+ *= require animate
  *= require_tree .
  *= require_self
  */
@@ -18,15 +18,17 @@
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300);
 
 
-$brand-green: #A2CFA5;
-$brand-yellow: #E0E7AB;
-$brand-orange: #F5974E;
-$brand-salmon: #E96B56;
-$brand-red: #D24344;
+$brand-bg: #FFFBF0;
+$brand-bg-hover: darken($brand-bg, 10);
+$brand-secondary: #3F5666;
+$brand-secondary-visited: darken($brand-secondary, 50);
+$brand-secondary-hover: #2F3440;
+$brand-primary: #F23E2C;
+$brand-primary-hover: lighten($brand-primary, 20);
 
 * {
   font-family: 'Oxygen', sans-serif;
-  background-color: $brand-green;
+  background-color: $brand-bg;
 }
 
 .input-huge {
@@ -37,24 +39,37 @@ $brand-red: #D24344;
   border-bottom: thin dotted;
   outline: none;
   margin: 5px;
+  width: 95%;
 }
 
 .column {
   position: relative;
   float: left;
-  width: 40%;
+  width: 46%;
 }
 
 .left-column {
-  margin-left: 10%;
+}
+
+.item {
+  whitespace: nowrap;
 }
 
 li.mine {
   a {
-    color: $brand-red;
+    font-size: 21px;
+    white-space: nowrap;
+    color: $brand-primary;
     &:hover {
-      color: $brand-salmon;
+      color: $brand-primary-hover;
       text-decoration: underline;
+    }
+    &:visited {
+      color: $brand-primary;
+      &:hover {
+        color: $brand-primary-hover;
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -65,6 +80,14 @@ a.project {
   border: none;
   outline: none;
   right: 0px;
+  color: $brand-secondary;
+  &:hover {
+    color: $brand-secondary-hover;
+    text-decoration: underline;
+  }
+  &:visited {
+    color: $brand-secondary;
+  }
 }
 
 .project-github {
@@ -79,4 +102,54 @@ a.project {
 
 .projects {
   list-style: none;
+}
+
+.splash {
+  display: flex;
+  height: 480px;
+
+  * {
+    background-color: $brand-bg-hover;
+    &:hover {
+      background-color: darken($brand-bg-hover, 4);
+    }
+  }
+
+  .btn {
+    margin: 100px auto;
+    height: 50px;
+    font-size: 40px;
+    line-height: 45px;
+    border: thin dotted;
+    border-radius: 2px;
+    padding: 15px;
+    outline: none;
+    text-decoration: none;
+    color: $brand-primary;
+    &:hover {
+      color: $brand-primary-hover;
+    }
+    &:visited {
+      text-decoration: none;
+    }
+  }
+}
+
+.header {
+  text-align: right;
+  .signout {
+    font-size: 13px;
+    line-height: 17px;
+    border: thin dotted;
+    border-radius: 2px;
+    outline: none;
+    text-decoration: none;
+    color: $brand-primary;
+    &:hover {
+      color: $brand-primary-hover;
+    }
+    &:visited {
+      text-decoration: none;
+    }
+  }
 }

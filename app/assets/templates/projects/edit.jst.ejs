@@ -1,3 +1,3 @@
-<input type="text" class="input-huge" name="title" value="<%= project.escape('title') %>" autofocus="autofocus"><br>
+<input type="text" class="input-huge" name="title" value="<%= project.escape('title') %>" autofocus="autofocus" onfocus="this.value = this.value;"><br>
 <input type="text"  class="input-huge" name="url" value="<%= project.escape('url') %>"><br>
 <input type="text"  class="input-huge" name="gitrepo" value="<%= project.escape('gitrepo') %>"><br>
