@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725183654) do
+ActiveRecord::Schema.define(version: 20140728182338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,18 +23,29 @@ ActiveRecord::Schema.define(version: 20140725183654) do
     t.string   "gitrepo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "vote_count", default: 0
   end
 
   create_table "users", force: true do |t|
-    t.string   "provider",      null: false
-    t.string   "uid",           null: false
-    t.string   "login",         null: false
-    t.string   "name",          null: false
-    t.string   "email",         null: false
-    t.string   "image",         null: false
-    t.string   "session_token", null: false
+    t.string   "provider",                  null: false
+    t.string   "uid",                       null: false
+    t.string   "login",                     null: false
+    t.string   "name",                      null: false
+    t.string   "email",                     null: false
+    t.string   "image",                     null: false
+    t.string   "session_token",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "vote_count",    default: 0
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "votes", ["project_id", "user_id"], name: "index_votes_on_project_id_and_user_id", unique: true, using: :btree
 
 end

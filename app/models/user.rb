@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   )
 
   has_one :project
+  has_many :votes
 
   before_validation :ensure_session_token, :ensure_project
 
