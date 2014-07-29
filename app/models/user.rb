@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
     presence: true
   )
 
+  default_scope { where(admin: false) }
+
   has_one :project
   has_many :votes, inverse_of: :user
 
@@ -50,6 +52,7 @@ class User < ActiveRecord::Base
     self.name = omniauth_params[:info][:name]
     self.email = omniauth_params[:info][:email]
     self.image = omniauth_params[:info][:image]
+    self.token = omniauth_params[:credentials][:token]
   end
 
   def email

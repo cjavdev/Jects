@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by_omniauth(omniauth_params)
 
     if user.nil?
+      fail
       user = User.new(omniauth: omniauth_params)
     else
       # Update params, issue new session token.

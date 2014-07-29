@@ -119,17 +119,39 @@ a.project {
 
 .splash {
   display: flex;
+  flex-direction: column;
   height: 480px;
 
-  * {
-    background-color: $brand-bg-hover;
-    &:hover {
-      background-color: darken($brand-bg-hover, 4);
+  ul {
+    width: 40%;
+    margin: auto;
+    background-color: $brand-bg;
+    list-style: none;
+    font-size: 20px;
+    padding-left: 0px;
+    text-align: center;
+    a {
+      color: $brand-primary;
+      text-decoration: none;
+      &:hover {
+        color: $brand-primary-hover;
+      }
     }
   }
 
   .btn {
-    margin: 100px auto;
+    background-color: $brand-bg-hover;
+    &:hover {
+      background-color: darken($brand-bg-hover, 4);
+    }
+    /* how do i make all children inherit a color? */
+    i {
+        background-color: $brand-bg-hover;
+      &:hover {
+        background-color: darken($brand-bg-hover, 4);
+      }
+    }
+    margin: 60px auto 10px auto;
     height: 50px;
     font-size: 40px;
     line-height: 45px;

@@ -3,7 +3,6 @@
     <i class="fa fa-github"></i>
     Sign in with Github
   </a>
-</div>
 
 <script>
   $(function () {
@@ -26,7 +25,13 @@
       'zoomIn'
     ]);
     console.log('Every exit is a ' + entrance + ' somewhere else.');
-    $('.splash').addClass('animated ' + entrance);
+    $('.btn').addClass('animated ' + entrance);
   });
 </script>
 
+  <ul class="leaders animated fadeInUp">
+    <% Project.order(:votes_count).limit(5).each do |p| %>
+      <li><a href="<%= p.url %>"><%= p.title %></a></li>
+    <% end %>
+  </ul>
+</div>
