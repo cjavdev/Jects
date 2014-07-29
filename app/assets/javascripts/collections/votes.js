@@ -8,6 +8,7 @@ Jects.Collections.Votes = Backbone.Collection.extend({
       type: 'DELETE',
       success: function () {
         this.set([]);
+        this.trigger('unvote');
       }.bind(this)
     });
   }

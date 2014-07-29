@@ -1,4 +1,8 @@
-<a class="upvote"><i class="fa fa-facebook"></i></a>
+<% if(!Jects.votes.findWhere({ project_id: project.id })) { %>
+  <a class="upvote"><i class="fa fa-chevron-up"></i></a>
+<% } else { %>
+  <a class="upvote"><i class="fa fa-star"></i></a>
+<% } %>
 <a class="title project project-url" href="<%= project.get('url') %>">
   <i class="fa fa-external-link"></i>
   <%= project.escape('title') %>

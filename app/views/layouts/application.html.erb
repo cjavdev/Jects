@@ -8,15 +8,20 @@
 </head>
 <body>
   <% if !!current_user %>
-    <div class="header animated fadeInRight">
-      <form action="/session" class="button_to" method="post">
-        <input name="_method" type="hidden" value="delete">
-        <button class="signout" type="submit">
-          <i class="fa fa-sign-out"></i>
-          Sign out
-        </button>
-        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-      </form>
+     <div class="header">
+       <div class="errors hidden">
+       </div>
+
+       <div class="auth animated fadeInRight">
+         <form action="/session" class="button_to" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <button class="signout" type="submit">
+              <i class="fa fa-sign-out"></i>
+              Sign out
+            </button>
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          </form>
+       </div>
     </div>
   <% end %>
 

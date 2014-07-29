@@ -18,8 +18,6 @@
 @import "font-awesome";
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300);
 
-
-
 $brand-bg: #FFFBF0;
 $brand-bg-hover: darken($brand-bg, 10);
 $brand-secondary: #3F5666;
@@ -48,13 +46,21 @@ $brand-primary-hover: lighten($brand-primary, 20);
   position: relative;
   float: left;
   width: 46%;
+  height: 100%;
 }
 
 .left-column {
+  position: absolute;
+  height: 100%;
+}
+
+.right-column {
+  margin-left: 50%;
+  padding: 20px;
 }
 
 .item {
-  whitespace: nowrap;
+  white-space: nowrap;
 }
 
 li.mine {
@@ -103,7 +109,12 @@ a.project {
 }
 
 .projects {
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
   list-style: none;
+  overflow-y: scroll;
 }
 
 .splash {
@@ -138,8 +149,21 @@ a.project {
 }
 
 .header {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  .errors {
+    &.hidden {
+      display: none;
+      visibility: hidden;
+    }
+    background-color: red;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border-radius: 3px;
+  }
   .signout {
+    margin-right: 40px;
     font-size: 13px;
     line-height: 17px;
     border: thin dotted;
@@ -163,4 +187,26 @@ a.project {
 #votes {
   margin-top: 50px;
   text-align: center;
+
+  .unvote {
+    font-size: 13px;
+    line-height: 17px;
+    border: thin dotted;
+    border-radius: 2px;
+    outline: none;
+    text-decoration: none;
+    color: $brand-primary;
+    &:hover {
+      color: $brand-primary-hover;
+    }
+    &:visited {
+      text-decoration: none;
+    }
+  }
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }

@@ -13,6 +13,7 @@ Jects.Views.ProjectsLayout = Backbone.View.extend({
     var votesView = new Jects.Views.VotesIndex({
       collection: Jects.votes
     });
+    var errorsView = new Jects.Views.ErrorView();
 
     var content = this.template();
     this.$el.html(content);
@@ -20,6 +21,7 @@ Jects.Views.ProjectsLayout = Backbone.View.extend({
     this.$('#projects').html(indexView.render().$el);
     this.$('#project').html(formView.render().$el);
     this.$('#votes').html(votesView.render().$el);
+    this.$('#errors').html(errorsView.render().$el);
 
     return this;
   }

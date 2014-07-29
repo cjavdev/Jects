@@ -1,4 +1,4 @@
-/*globals Jects, Backbone, JST */
+/*globals $, Jects, Backbone, JST */
 Jects.Views.ProjectItem = Backbone.View.extend({
   template: JST['projects/item'],
   tagName: 'li',
@@ -8,10 +8,11 @@ Jects.Views.ProjectItem = Backbone.View.extend({
   },
 
   className: function () {
-    return (this.model === Jects.project()) ? 'mine' : 'item';
+    return (this.model === Jects.project()) ? 'item mine' : 'item';
   },
 
   initialize: function () {
+    this.listenTo(Jects.votes, 'unvote', this.render);
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(this.model, 'change:title change:url', this.emphasizeTitle);
     this.listenTo(this.model, 'change:gitrepo', this.emphasizeGithub);
@@ -41,9 +42,12 @@ Jects.Views.ProjectItem = Backbone.View.extend({
     var vote = new Jects.Models.Vote({ project_id: this.model.id });
     vote.save({}, {
       success: function () {
-        this.render();
         Jects.votes.add(vote);
-      }.bind(this)
+        this.render();
+      }.bind(this),
+      error: function (data, response) {
+        Jects.errorBus.trigger('error', 'Error', JSON.parse(response.responseText)[0]);
+      }.bind(this),
     });
   }
 });
