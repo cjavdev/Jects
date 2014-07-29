@@ -3,6 +3,10 @@ Jects.Views.ProjectItem = Backbone.View.extend({
   template: JST['projects/item'],
   tagName: 'li',
 
+  events: {
+    'click .upvote': 'upvote'
+  },
+
   className: function () {
     return (this.model === Jects.project()) ? 'mine' : 'item';
   },
@@ -31,5 +35,15 @@ Jects.Views.ProjectItem = Backbone.View.extend({
     setTimeout(function () {
       this.$('a.gitrepo').addClass('animated shake');
     }.bind(this), 300);
+  },
+
+  upvote: function () {
+    var vote = new Jects.Models.Vote({ project_id: this.model.id });
+    vote.save({}, {
+      success: function () {
+        this.render();
+        Jects.votes.add(vote);
+      }.bind(this)
+    });
   }
 });

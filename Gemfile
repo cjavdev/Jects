@@ -18,4 +18,6 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'serialize_json-rails'
 gem 'spring',        group: :development
+gem 'better_errors', group: :development
+gem 'binding_of_caller', group: :development
 gem 'uglifier', '>= 1.3.0'

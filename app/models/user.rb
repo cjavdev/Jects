@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  provider      :string(255)      not null
+#  uid           :string(255)      not null
+#  login         :string(255)      not null
+#  name          :string(255)      not null
+#  email         :string(255)      not null
+#  image         :string(255)      not null
+#  session_token :string(255)      not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#  votes_count   :integer          default(0)
+#
+
 class User < ActiveRecord::Base
   validates(
     :provider,
@@ -11,17 +28,19 @@ class User < ActiveRecord::Base
   )
 
   has_one :project
-  has_many :votes
+  has_many :votes, inverse_of: :user
 
   before_validation :ensure_session_token, :ensure_project
-
-
 
   def self.find_by_omniauth(omniauth_params)
     self.find_by(
       provider: omniauth_params[:provider],
       uid: omniauth_params[:uid]
     )
+  end
+
+  def votes_left
+    3 - votes_count
   end
 
   def omniauth=(omniauth_params)

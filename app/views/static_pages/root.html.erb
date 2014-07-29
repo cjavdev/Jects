@@ -2,6 +2,7 @@
   $(Jects.initialize);
   var UID = '<%= current_user.id %>';
   Jects.projects.set(<%= Project.all.to_json.html_safe %>);
+  Jects.votes.set(<%= current_user.votes.pluck(:project_id).to_json.html_safe %>);
 </script>
 
 <main id="main"></main>
