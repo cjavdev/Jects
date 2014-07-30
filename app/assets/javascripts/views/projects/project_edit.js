@@ -34,7 +34,12 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
     this.debouncedKeyup();
   },
 
-  refreshRepos: function () {
+  refreshRepos: function (event) {
+    event.preventDefault();
+    $(event.currentTarget).text("one moment...");
+    $(event.currentTarget).addClass("animated flash");
+    $(event.currentTarget).prop('disabled', true);
+
     $.ajax({
       url: 'api/repo',
       type: 'PATCH',
