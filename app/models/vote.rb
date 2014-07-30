@@ -10,7 +10,7 @@
 #
 
 class Vote < ActiveRecord::Base
-  validates :user_id, uniqueness: { scope: :project_id }
+  validates :project_id, uniqueness: { scope: :user_id }
   validate :user_max_votes
 
   belongs_to :project, counter_cache: true

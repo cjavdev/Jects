@@ -2,6 +2,10 @@
 <input type="text"  class="input-huge" name="url" value="<%= project.escape('url') %>"><br>
 <select name="gitrepo" class="input-huge">
   <% _(Jects.repos).each(function (repo) { %>
-    <option><%= repo %></option>
+    <% if(repo === project.escape('gitrepo')) { %>
+      <option selected><%= repo %></option>
+    <% } else { %>
+      <option><%= repo %></option>
+    <% } %>
   <% }) %>
 </select>

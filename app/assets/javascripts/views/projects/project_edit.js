@@ -4,7 +4,8 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
   tagName: 'form',
 
   events: {
-    'keyup': 'updateProject'
+    'keyup': 'updateProject',
+    'change': 'updateProject'
   },
 
   initialize: function () {

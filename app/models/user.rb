@@ -46,17 +46,16 @@ class User < ActiveRecord::Base
     "thejamaicandave@gmail.com" || super
   end
 
+  def github_user
+    github.user
+  end
+
   def github
-    @user ||= begin
-      u = Octokit::Client.new(access_token: token).user
-      u.login
-      u
-    end
-    @user
+    @_github ||= Octokit::Client.new(access_token: token)
   end
 
   def _repos
-    @repos ||= github.rels[:repos].get.data
+    @_repos ||= github_user.rels[:repos].get.data
   end
 
   def omniauth=(omniauth_params)
