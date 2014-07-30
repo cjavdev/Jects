@@ -1,4 +1,4 @@
-/*globals Jects, Backbone, JST, _ */
+/*globals Jects, Backbone, JST, _, $ */
 Jects.Views.ProjectEdit = Backbone.View.extend({
   template: JST['projects/edit'],
   tagName: 'form',
@@ -17,7 +17,10 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
 
   generateChecklist: function (event) {
     event.preventDefault();
-    this.model.generateChecklist();
+    $(event.currentTarget).hide();
+    this.model.generateChecklist().then(function () {
+      Jects.errorBus.trigger("error", "Success", "Just made a bunch of issues for you to checkoff :), go check your projects github repo");
+    });
   },
 
   updateProject: function () {

@@ -169,6 +169,23 @@ a.project {
   }
 }
 
+.btn {
+  font-size: 13px;
+  line-height: 17px;
+  border: thin dotted;
+  border-radius: 2px;
+  outline: none;
+  text-decoration: none;
+  padding: 5px;
+  color: $brand-primary;
+  &:hover {
+    color: $brand-primary-hover;
+  }
+  &:visited {
+    text-decoration: none;
+  }
+}
+
 
 #votes {
   margin-top: 50px;

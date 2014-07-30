@@ -2,9 +2,14 @@ class Repo < ActiveRecord::Base
   belongs_to :user
 
   def submit_issues!
+    return if self.generated
+
     issues.each do |title, description|
       user.github.create_issue(name, title, description)
     end
+
+    self.generated = true
+    self.save!
   end
 
   def issues
