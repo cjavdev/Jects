@@ -17,8 +17,12 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
 
   generateChecklist: function (event) {
     event.preventDefault();
-    $(event.currentTarget).hide();
+    $(event.currentTarget).text("one moment...");
+    $(event.currentTarget).addClass("animated flash");
+    $(event.currentTarget).prop('disabled', true);
+
     this.model.generateChecklist().then(function () {
+      $(event.currentTarget).hide();
       Jects.errorBus.trigger("error", "Success", "Just made a bunch of issues for you to checkoff :), go check your projects github repo");
     });
   },
