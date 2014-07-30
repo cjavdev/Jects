@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 
   has_one :project
   has_many :votes, inverse_of: :user
+  has_many :repos
 
   before_validation :ensure_session_token, :ensure_project
 
@@ -41,8 +42,21 @@ class User < ActiveRecord::Base
     )
   end
 
-  def votes_left
-    3 - votes_count
+  def email
+    "thejamaicandave@gmail.com" || super
+  end
+
+  def github
+    @user ||= begin
+      u = Octokit::Client.new(access_token: token).user
+      u.login
+      u
+    end
+    @user
+  end
+
+  def _repos
+    @repos ||= github.rels[:repos].get.data
   end
 
   def omniauth=(omniauth_params)
@@ -53,10 +67,14 @@ class User < ActiveRecord::Base
     self.email = omniauth_params[:info][:email]
     self.image = omniauth_params[:info][:image]
     self.token = omniauth_params[:credentials][:token]
+    cache_repos
   end
 
-  def email
-    "thejamaicandave@gmail.com" || super
+  def cache_repos
+    _repos.map(&:name).each do |name|
+      repo_name = "#{ github.login }/#{ name }"
+      self.repos.build(name: repo_name)
+    end
   end
 
   def reset_session_token!
@@ -66,6 +84,10 @@ class User < ActiveRecord::Base
 
   def reset_session_token
     self.session_token = SecureRandom.urlsafe_base64
+  end
+
+  def votes_left
+    3 - votes_count
   end
 
   protected
