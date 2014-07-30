@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/welcome", to: "sessions#new"
 
   namespace :api do
+    resource :repo
     resources :projects do
       member do
         post "/checklist", to: "projects#checklist"

@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def _repos
-    @_repos ||= github_user.rels[:repos].get.data
+    github_user.rels[:repos].get.data
   end
 
   def omniauth=(omniauth_params)
@@ -76,8 +76,10 @@ class User < ActiveRecord::Base
   def cache_repos
     _repos.map(&:name).each do |name|
       repo_name = "#{ github.login }/#{ name }"
+      next if self.repos.exists?(name: repo_name)
       self.repos.build(name: repo_name)
     end
+    self.repos
   end
 
   def reset_session_token!
@@ -102,8 +104,8 @@ class User < ActiveRecord::Base
   def ensure_project
     self.project ||= Project.create(
       title: "#{ self.login }'s project",
-      url: 'http://bp.io/',
-      gitrepo: 'bp/bp'
+      url: 'http://exampleproject.herokuapp.com/',
+      gitrepo: "#{ self.login }/my_final_project"
     )
   end
 end

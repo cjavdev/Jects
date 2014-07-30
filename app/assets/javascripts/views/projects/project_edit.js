@@ -6,7 +6,8 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
   events: {
     'keyup': 'updateProject',
     'change': 'updateProject',
-    'click a': 'generateChecklist'
+    'click a.checklist': 'generateChecklist',
+    'click a.refresh': 'refreshRepos',
   },
 
   initialize: function () {
@@ -31,6 +32,17 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
     var params = this.$el.serializeJSON();
     this.model.set(params);
     this.debouncedKeyup();
+  },
+
+  refreshRepos: function () {
+    $.ajax({
+      url: 'api/repo',
+      type: 'PATCH',
+      success: function (data) {
+        Jects.repos = data;
+        this.render();
+      }.bind(this)
+    });
   },
 
   render: function () {
