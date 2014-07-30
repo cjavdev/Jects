@@ -15,7 +15,7 @@
 class Project < ActiveRecord::Base
   validates :title, :url, :gitrepo, presence: true
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(votes_count: :desc) }
 
   belongs_to :user
   has_many :votes
