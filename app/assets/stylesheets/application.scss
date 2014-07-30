@@ -11,13 +11,13 @@
  * file per style scope.
  *= require animate
  *= require gh-fork-ribbon
- *= require_tree .
  *= require_self
  */
 
 @import "font-awesome";
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300);
 
+/* variables */
 $brand-bg: #FFFBF0;
 $brand-bg-hover: darken($brand-bg, 10);
 $brand-secondary: #3F5666;
@@ -26,6 +26,10 @@ $brand-secondary-hover: #2F3440;
 $brand-primary: #F23E2C;
 $brand-primary-hover: lighten($brand-primary, 20);
 
+/* splash page/sign in */
+@import "welcome";
+
+/* site wide */
 * {
   font-family: 'Oxygen', sans-serif;
   background-color: $brand-bg;
@@ -35,6 +39,10 @@ html, body {
   width: 100%;
   height: 100%;
   position: relative;
+}
+
+.right-bottom .github-fork-ribbon a {
+  background-color: $brand-primary;
 }
 
 .input-huge {
@@ -49,6 +57,7 @@ html, body {
   width: 95%;
 }
 
+/* grid system */
 /* how to make this responsive? @media something */
 .column {
   position: relative;
@@ -72,6 +81,8 @@ html, body {
   white-space: nowrap;
 }
 
+/* project directory */
+/* TODO: move to directory.scss */
 li.mine {
   a {
     font-size: 21px;
@@ -126,59 +137,6 @@ a.project {
   overflow-y: scroll;
 }
 
-.splash {
-  display: flex;
-  flex-direction: column;
-  height: 480px;
-
-  ul {
-    width: 40%;
-    margin: auto;
-    background-color: $brand-bg;
-    list-style: none;
-    font-size: 20px;
-    padding-left: 0px;
-    text-align: center;
-    a {
-      color: $brand-primary;
-      text-decoration: none;
-      &:hover {
-        color: $brand-primary-hover;
-      }
-    }
-  }
-
-  .btn {
-    background-color: $brand-bg-hover;
-    &:hover {
-      background-color: darken($brand-bg-hover, 4);
-    }
-    /* how do i make all children inherit a color? */
-    i {
-        background-color: $brand-bg-hover;
-      &:hover {
-        background-color: darken($brand-bg-hover, 4);
-      }
-    }
-    margin: 60px auto 10px auto;
-    height: 50px;
-    font-size: 40px;
-    line-height: 45px;
-    border: thin dotted;
-    border-radius: 2px;
-    padding: 15px;
-    outline: none;
-    text-decoration: none;
-    color: $brand-primary;
-    &:hover {
-      color: $brand-primary-hover;
-    }
-    &:visited {
-      text-decoration: none;
-    }
-  }
-}
-
 .header {
   display: flex;
   justify-content: flex-end;
@@ -211,9 +169,6 @@ a.project {
   }
 }
 
-.right-bottom .github-fork-ribbon a {
-  background-color: $brand-primary;
-}
 
 #votes {
   margin-top: 50px;
@@ -235,4 +190,3 @@ a.project {
     }
   }
 }
-
