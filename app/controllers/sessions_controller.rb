@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_filter :require_user!, :only => [:create, :new]
 
   def create
-    omniauth_params = request.env["omniauth.auth"]
+    omniauth_params = request.env['omniauth.auth']
     user = User.find_by_omniauth(omniauth_params)
 
     if user.nil?
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       render json: {
         errors: user.errors,
         params: params,
-        'omniauth.auth' => request.env["omniauth.auth"]
+        'omniauth.auth' => request.env['omniauth.auth']
       }, status: 422
     end
   end
@@ -28,14 +28,14 @@ class SessionsController < ApplicationController
   def destroy
     current_user.reset_session_token!
     session.delete(:session_token)
-    redirect_to "/session/new"
+    redirect_to '/session/new'
   end
 
   def new
     if current_user
-      redirect_to "/"
+      redirect_to '/'
     else
-      render "new"
+      render 'new'
     end
   end
 end

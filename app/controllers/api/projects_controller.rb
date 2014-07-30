@@ -6,7 +6,7 @@ module Api
       if @project.update_attributes(project_params)
         render json: @project
       else
-        render json: @project.errors.full_messages, status: :unprocessable_entity
+        render json: @project.errors.full_messages, status: 422
       end
     end
 

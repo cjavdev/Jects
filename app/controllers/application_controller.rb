@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  if !Rails.env.development?
+  unless Rails.env.development?
     protect_from_forgery with: :null_session
   end
 
@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user!
-    redirect_to "/session/new" if !current_user
+    redirect_to "/session/new" unless current_user
   end
 end
