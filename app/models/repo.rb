@@ -1,7 +1,7 @@
 class Repo < ActiveRecord::Base
   belongs_to :user
 
-  def submit_issues
+  def submit_issues!
     issues.each do |title, description|
       user.github.create_issue(name, title, description)
     end

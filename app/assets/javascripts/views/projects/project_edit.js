@@ -5,13 +5,19 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
 
   events: {
     'keyup': 'updateProject',
-    'change': 'updateProject'
+    'change': 'updateProject',
+    'click a': 'generateChecklist'
   },
 
   initialize: function () {
     this.debouncedKeyup = _.debounce(function () {
       this.model.save();
     }.bind(this), 100, false);
+  },
+
+  generateChecklist: function (event) {
+    event.preventDefault();
+    this.model.generateChecklist();
   },
 
   updateProject: function () {

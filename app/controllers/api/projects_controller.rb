@@ -10,6 +10,11 @@ module Api
       end
     end
 
+    def checklist
+      current_user.project_repo.submit_issues!
+      render json: { message: "Issues created!" }
+    end
+
     private
 
     def project_params

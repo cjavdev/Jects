@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get "/welcome", to: "sessions#new"
 
   namespace :api do
-    resources :projects
+    resources :projects do
+      member do
+        post "/checklist", to: "projects#checklist"
+      end
+    end
     resources :votes
     delete "/votes", to: "votes#destroy_them_all"
   end

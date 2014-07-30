@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
     github.user
   end
 
+  def project_repo
+    repos.where(name: project.gitrepo).first
+  end
+
   def github
     @_github ||= Octokit::Client.new(access_token: token)
   end
