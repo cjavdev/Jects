@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     omniauth_params = request.env['omniauth.auth']
-    user = User.find_by_omniauth(omniauth_params)
+    user = User.unscoped.find_by_omniauth(omniauth_params)
 
     if user.nil?
       user = User.new(omniauth: omniauth_params)
