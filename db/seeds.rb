@@ -29,7 +29,7 @@
   p = u.project
   p.title = "#{ Faker::Hacker.abbreviation } #{ Faker::Hacker.ingverb}  #{ Faker::Hacker.noun }"
   name = Faker::Internet.domain_word
-  p.url = "http://#{ name }.#{ Faker::Internet.domain_suffix }/"
+  p.url = "#{ name }.#{ Faker::Internet.domain_suffix }/"
   p.gitrepo = "#{ name }/#{ name }"
   p.save
   puts "#{ name } created! #{ n } / 1000"

@@ -12,7 +12,11 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
 
   initialize: function () {
     this.debouncedKeyup = _.debounce(function () {
-      this.model.save();
+      this.model.save({}, {
+        success: function () {
+          Jects.errorBus.trigger("notification", "Success!", "saved!");
+        }
+      });
     }.bind(this), 100, false);
   },
 
@@ -30,6 +34,7 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
 
   updateProject: function () {
     var params = this.$el.serializeJSON();
+    params.url = params.url.replace("https://", "").replace("http://","");
     this.model.set(params);
     this.debouncedKeyup();
   },

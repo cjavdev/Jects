@@ -28,13 +28,13 @@ Jects.Views.ProjectItem = Backbone.View.extend({
 
   emphasizeTitle: function () {
     setTimeout(function () {
-      this.$('a.title').addClass('animated shake');
+      this.$('a.title').addClass('animated tada');
     }.bind(this), 300);
   },
 
   emphasizeGithub: function () {
     setTimeout(function () {
-      this.$('a.gitrepo').addClass('animated shake');
+      this.$('a.gitrepo').addClass('animated tada');
     }.bind(this), 300);
   },
 

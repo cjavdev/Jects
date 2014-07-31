@@ -3,7 +3,7 @@ Jects.Views.ErrorView = Backbone.View.extend({
   template: JST['errors/error'],
 
   initialize: function () {
-    this.listenTo(Jects.errorBus, 'error', this.changeMessage);
+    this.listenTo(Jects.errorBus, 'error notification', this.changeMessage);
   },
 
   changeMessage: function (type, description) {

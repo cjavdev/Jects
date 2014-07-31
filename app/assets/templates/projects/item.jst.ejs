@@ -1,9 +1,20 @@
 <% if(!Jects.votes.findWhere({ project_id: project.id })) { %>
-  <a class="upvote"><i class="fa fa-chevron-up"></i></a>
+<a class="upvote">
+  <% if(project.get('votes_count') > 0) {  %>
+    <%= project.get('votes_count') %>
+  <% } %>
+  <i class="fa fa-thumbs-o-up"></i>
+</a>
 <% } else { %>
-  <a class="upvote"><i class="fa fa-star"></i></a>
+<a class="upvote">
+  <% if(project.get('votes_count') > 0) {  %>
+    <%= project.get('votes_count') %>
+  <% } %>
+  <i class="fa fa-star"></i>
+</a>
 <% } %>
-<a class="title project project-url" href="<%= project.get('url') %>">
+
+<a class="title project project-url" href="http://<%= project.get('url') %>">
   <i class="fa fa-external-link"></i>
   <%= project.escape('title') %>
 </a>
