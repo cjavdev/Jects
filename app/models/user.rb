@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
   def ensure_project
     self.project ||= Project.create(
       title: "#{ self.login }'s project",
-      url: 'http://exampleproject.herokuapp.com/',
+      url: 'exampleproject.herokuapp.com',
       gitrepo: "#{ self.login }/my_final_project"
     )
   end
