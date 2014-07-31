@@ -27,8 +27,6 @@ class User < ActiveRecord::Base
     presence: true
   )
 
-  default_scope { where(admin: false) }
-
   has_one :project
   has_many :votes, inverse_of: :user
   has_many :repos
