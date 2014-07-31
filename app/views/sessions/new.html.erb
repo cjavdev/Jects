@@ -31,7 +31,7 @@
 
   <ul class="leaders animated fadeInUp">
     <% Project.order(:votes_count).limit(5).each do |p| %>
-      <li><a href="<%= p.url %>"><%= p.title %></a></li>
+      <li><a href="http://<%= p.url %>"><%= p.title %></a></li>
     <% end %>
   </ul>
 </div>
