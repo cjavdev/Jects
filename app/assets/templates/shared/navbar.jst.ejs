@@ -1,0 +1,9 @@
+<% _(links).each(function (link) { %>
+  <% if(link.route === route) { %>
+    <li class="active">
+      <a href="<%= link.path %>"><%= link.title %></a>
+    </li>
+  <% } else { %>
+    <li><a href="<%= link.path %>"><%= link.title %></a></li>
+  <% } %>
+<% }) %>

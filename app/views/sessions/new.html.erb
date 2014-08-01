@@ -6,6 +6,14 @@
   </a></p>
 </div>
 
+  <ul class="leaders animated fadeInUp">
+    <% Project.order(:votes_count).limit(5).each do |p| %>
+      <li><a href="http://<%= p.url %>"><%= p.title %></a></li>
+    <% end %>
+  </ul>
+</div>
+
+<% content_for :scripts do %>
 <script>
   $(function () {
     var entrance = _.sample([
@@ -30,10 +38,6 @@
     $('.login').addClass('animated ' + entrance);
   });
 </script>
+<% end %>
 
-  <ul class="leaders animated fadeInUp">
-    <% Project.order(:votes_count).limit(5).each do |p| %>
-      <li><a href="http://<%= p.url %>"><%= p.title %></a></li>
-    <% end %>
-  </ul>
-</div>
+
