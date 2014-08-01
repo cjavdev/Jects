@@ -5,7 +5,15 @@ window.Jects = {
   Views: {},
   Routers: {},
   project: function () {
-    return this.projects.find(function (p) { return p.get('user_id') == UID });
+    var project = this.projects.find(function (p) { return p.get('user_id') == UID });
+
+    if(!project) {
+      project = new Jects.Models.Project({ id: PID });
+    }
+
+    project.fetch();
+
+    return project;
   },
   initialize: function() {
     Jects.errorBus = {};

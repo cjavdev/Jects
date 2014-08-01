@@ -1,6 +1,16 @@
 /*globals $, Jects, Backbone */
 Jects.Models.Project = Backbone.Model.extend({
-  rootUrl: 'api/projects',
+  urlRoot: 'api/projects',
+
+  addVote: function () {
+    var votesCount = this.get('votes_count');
+    this.set('votes_count', votesCount + 1);
+  },
+
+  removeVote: function () {
+    var votesCount = this.get('votes_count');
+    this.set('votes_count', votesCount - 1);
+  },
 
   generateChecklist: function () {
     return $.ajax({

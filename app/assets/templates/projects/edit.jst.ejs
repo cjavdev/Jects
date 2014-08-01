@@ -1,6 +1,7 @@
-<input type="text" class="input-huge" name="title" value="<%= project.escape('title') %>" autofocus="autofocus" onfocus="this.value = this.value;"><br>
-<input type="text"  class="input-huge" name="url" value="<%= project.escape('url') %>"><br>
-<select name="gitrepo" class="input-huge">
+<input type="text" class="form-control" name="title" value="<%= project.escape('title') %>" autofocus="autofocus" onfocus="this.value = this.value;"><br>
+<input type="text"  class="form-control" name="url" value="<%= project.escape('url') %>"><br>
+<div class="form-group">
+<select name="gitrepo" class="form-control">
   <% _(Jects.repos).each(function (repo) { %>
     <% if(repo === project.escape('gitrepo')) { %>
       <option selected><%= repo %></option>
@@ -9,13 +10,19 @@
     <% } %>
   <% }) %>
 </select>
+</div>
 
-<a class="btn checklist" alt="This generates a final project checklist for you">
+<div class="form-group">
+  <button class="btn btn-primary btn-lg">Update</button>
+  <a class="btn refresh">
+    <i class="fa fa-refresh"></i>
+    Reload my repo list
+  </a>
+</div>
+
+<a class="btn btn-default btn-sm checklist" alt="This generates a final project checklist for you">
   <i class="fa fa-check"></i>
   Generate checklist as github issues for this repo!
 </a>
 
-<a class="btn refresh">
-  <i class="fa fa-refresh"></i>
-  Reload my repo list
-</a>
+

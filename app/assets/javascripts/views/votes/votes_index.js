@@ -4,16 +4,10 @@ Jects.Views.VotesIndex = Backbone.View.extend({
 
   initialize: function () {
     this.listenTo(Jects.votes, 'all', this.render);
-    this.listenTo(Jects.errorBus, 'error', this.shake);
   },
 
   events: {
     'click button.unvote': 'unvote'
-  },
-
-  shake: function () {
-    this.$el.addClass('animated shake');
-    setTimeout(this.render.bind(this), 1000);
   },
 
   unvote: function () {

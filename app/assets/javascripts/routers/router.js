@@ -1,14 +1,25 @@
 /*globals $, Backbone, Jects */
 Jects.Routers.Router = Backbone.Router.extend({
   routes: {
-    '': 'index'
+    '': 'index',
+    'project': 'show'
   },
 
   index: function () {
+    Jects.projects.fetch();
+
     var view = new Jects.Views.ProjectsLayout({
-      collection: Jects.projects,
+      collection: Jects.projects
+    });
+
+    this._swapView(view);
+  },
+
+  show: function () {
+    var view = new Jects.Views.ProjectEdit({
       model: Jects.project()
     });
+
     this._swapView(view);
   },
 

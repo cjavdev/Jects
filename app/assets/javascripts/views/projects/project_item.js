@@ -2,13 +2,10 @@
 Jects.Views.ProjectItem = Backbone.View.extend({
   template: JST['projects/item'],
   tagName: 'li',
+  className: 'list-group-item',
 
   events: {
     'click .upvote': 'upvote'
-  },
-
-  className: function () {
-    return (this.model === Jects.project()) ? 'item mine' : 'item';
   },
 
   initialize: function () {
@@ -42,6 +39,7 @@ Jects.Views.ProjectItem = Backbone.View.extend({
     var vote = new Jects.Models.Vote({ project_id: this.model.id });
     vote.save({}, {
       success: function () {
+        this.model.addVote();
         Jects.votes.add(vote);
         this.render();
       }.bind(this),

@@ -3,6 +3,8 @@ Jects.Views.ProjectsIndex = Backbone.CompositeView.extend({
   template: JST['projects/index'],
 
   initialize: function () {
+    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'add', this.addProject);
     this.collection.each(this.addProject.bind(this));
   },
 
@@ -10,6 +12,7 @@ Jects.Views.ProjectsIndex = Backbone.CompositeView.extend({
     var view = new Jects.Views.ProjectItem({
       model: project
     });
+
     this.addSubview('ul', view);
   },
 
@@ -18,11 +21,6 @@ Jects.Views.ProjectsIndex = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
 
-    // var view = new Jects.Views.ProjectItem({
-    //   model: Jects.project()
-    // });
-    //
-    // this.$('ul').prepend(view.render().$el);
     return this;
   }
 });

@@ -1,35 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Jects</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <% if !!current_user %>
-     <div class="header">
-       <div class="errors hidden">
-       </div>
-
-       <div class="auth animated fadeInRight">
-         <form action="/session" class="button_to" method="post">
-            <input name="_method" type="hidden" value="delete">
-            <button class="signout" type="submit">
-              <i class="fa fa-sign-out"></i>
-              Sign out
-            </button>
-            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-          </form>
-       </div>
+  <head>
+    <title>Jects</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= yield %>
+    <div class="github-fork-ribbon-wrapper right-bottom">
+      <div class="github-fork-ribbon">
+        <a href="https://github.com/w1zeman1p/jects/fork">Fork me on GitHub</a>
+      </div>
     </div>
-  <% end %>
-
-  <%= yield %>
-  <div class="github-fork-ribbon-wrapper right-bottom">
-    <div class="github-fork-ribbon">
-      <a href="https://github.com/w1zeman1p/jects/fork">Fork me on GitHub</a>
-    </div>
-  </div>
-</body>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :scripts %>
+  </body>
 </html>

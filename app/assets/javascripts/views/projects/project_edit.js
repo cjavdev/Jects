@@ -1,23 +1,17 @@
 /*globals Jects, Backbone, JST, _, $ */
 Jects.Views.ProjectEdit = Backbone.View.extend({
   template: JST['projects/edit'],
-  tagName: 'form',
+  tagName: 'form ',
+  className: 'col-md-8 col-md-offset-2',
 
   events: {
-    'keyup': 'updateProject',
-    'change': 'updateProject',
+    'submit': 'updateProject',
     'click a.checklist': 'generateChecklist',
     'click a.refresh': 'refreshRepos',
   },
 
   initialize: function () {
-    this.debouncedKeyup = _.debounce(function () {
-      this.model.save({}, {
-        success: function () {
-          Jects.errorBus.trigger("notification", "Success!", "saved!");
-        }
-      });
-    }.bind(this), 100, false);
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   generateChecklist: function (event) {
@@ -32,11 +26,15 @@ Jects.Views.ProjectEdit = Backbone.View.extend({
     });
   },
 
-  updateProject: function () {
+  updateProject: function (event) {
+    event.preventDefault();
     var params = this.$el.serializeJSON();
     params.url = params.url.replace("https://", "").replace("http://","");
-    this.model.set(params);
-    this.debouncedKeyup();
+    this.model.save(params, {
+      success: function () {
+        Backbone.history.navigate("#/", { trigger: true });
+      }
+    });
   },
 
   refreshRepos: function (event) {
