@@ -91,6 +91,10 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
+    lol_dba (1.6.0)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      railties (>= 3.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -195,6 +199,7 @@ DEPENDENCIES
   httplog
   jbuilder (~> 2.0)
   jquery-rails
+  lol_dba
   newrelic_rpm
   octokit
   omniauth
